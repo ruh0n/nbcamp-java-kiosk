@@ -1,7 +1,6 @@
 package object;
 
 import common.Category;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ public class Product extends Menu {
   public Product(Product product) {
     super(product.category, product.name, product.description);
     this.price = product.price;
-    this.optionList = Collections.unmodifiableList(product.optionList);
+    this.optionList = product.optionList;
   }
 
   public Product(Category category, String name, double price, String description) {

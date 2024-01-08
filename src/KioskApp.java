@@ -1,7 +1,7 @@
+import common.Category;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import common.Category;
 import object.Menu;
 import object.Product;
 import object.ProductOption;
@@ -11,8 +11,8 @@ import screen.MainMenuScreen;
 
 public class KioskApp {
 
-  List<Menu> menus;
-  List<Product> products;
+  List<Menu> MENUS;
+  List<Product> PRODUCTS;
   List<Product> productsToOrder = new ArrayList<>();
 
   List<Product> orderHistory = new ArrayList<>();
@@ -22,7 +22,6 @@ public class KioskApp {
 
   public KioskApp() {
     initialize();
-
   }
 
   public void run() {
@@ -38,16 +37,16 @@ public class KioskApp {
 
   private void initialize() {
 
-    this.menus = Arrays.asList(new Menu(Category.DONUT, "어떤 취향도 만족시킬 던킨도너츠의 도넛"),
+    this.MENUS = Arrays.asList(new Menu(Category.DONUT, "어떤 취향도 만족시킬 던킨도너츠의 도넛"),
                                new Menu(Category.BAGEL, "상쾌한 아침을 만나기 위한 베이글"),
                                new Menu(Category.SANDWICHES, "신선한 재료와 풍부한 맛의 조화로 만들어진 샌드위치"),
                                new Menu(Category.COFFEE, "일상에 활력을 불어넣을 향긋한 커피"),
                                new Menu(Category.BEVERAGE, "도넛의 맛을 한층 업그레이드 시켜주는 음료"));
 
-    ProductOption sizeOption = new ProductOption("Size", new Choice("Small", 0), new Choice("Midium", 0.5), new Choice("Large", 1.0));
+    ProductOption sizeOption = new ProductOption("Size", new Choice("Small", 0), new Choice("Medium", 0.5), new Choice("Large", 1.0));
     ProductOption iceHotOption = new ProductOption("Ice/Hot", new Choice("Ice", 0.5), new Choice("Hot", 0));
-    ProductOption packageOption = new ProductOption("Package", new Choice("없음", 0), new Choice("포장", 0.5));
-    this.products = Arrays.asList(new Product(Category.DONUT, "Famous Glazed", 1.5, "더욱 촉촉하고 부드러워진 달콤한 정통 도넛"),
+    ProductOption packageOption = new ProductOption("Package", new Choice("NoPackage", 0), new Choice("Package", 0.5));
+    this.PRODUCTS = Arrays.asList(new Product(Category.DONUT, "Famous Glazed", 1.5, "더욱 촉촉하고 부드러워진 달콤한 정통 도넛"),
                                   new Product(Category.DONUT, "Strawberry Filled", 1.9, "예쁜 딸기가 상큼, 새하얀 슈가파우더가 입안에서 스르륵"),
                                   new Product(Category.DONUT, "Bavarian Filled", 1.9, "부드러운 바바리안 크림과 부드러운 도넛이 조화를 이룬 도넛"),
                                   new Product(Category.DONUT, "Boston Kreme", 2.1, "부드러운 바바리안 크림이 들어간 도넛에 달콤한 초콜릿과 화려한 일곱 빛깔 무지개 컬러 스프링클을 토핑한 도넛"),
@@ -73,6 +72,6 @@ public class KioskApp {
                                   new Product(Category.BEVERAGE, "Kiwi Coolatta", 4.5, "키위의 상큼함과 대체당(몽크프룻)으로 건강한 단맛을 살린 키위 쿨라타"),
                                   new Product(Category.BEVERAGE, "Hershey´s Choco", 4.0, "달콤한고 진한 허쉬 초콜릿의 풍미를 느낄 수 있는 음료"));
 
-    this.screen = new MainMenuScreen(menus, products, productsToOrder, orderHistory, orderNumber);
+    this.screen = new MainMenuScreen(MENUS, PRODUCTS, productsToOrder, orderHistory, orderNumber);
   }
 }
