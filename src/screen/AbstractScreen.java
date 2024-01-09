@@ -41,13 +41,15 @@ public abstract class AbstractScreen {
     AbstractScreen destination;
     this.printScreen();
 
+    boolean isWrongInput;
     do {
       destination = this.navigateByInput();
 
-      if (destination == null) {
+      isWrongInput = !(this instanceof ExitScreen) && destination == null;
+      if (isWrongInput) {
         System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
       }
-    } while (destination == null);
+    } while (isWrongInput);
 
     return destination;
   }
