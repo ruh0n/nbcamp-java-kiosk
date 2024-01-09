@@ -14,6 +14,7 @@ public class ExitScreen extends AbstractScreen {
       throw new RuntimeException(e);
     }
 
+    // TODO 정상적으로 종료가 되지 않는 문제
     return null;
   }
 

@@ -9,11 +9,17 @@ public class OrderCancelScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
-    int input = getInput();
-    if (input == 1) {
-      productsToOrder.clear();
-      System.out.println("진행하던 주문이 취소되었습니다.");
-    }
+    boolean isOptionSelected = false;
+
+    do {
+      int input = getInput();
+      if (input == 1) {
+        productsToOrder.clear();
+        System.out.println("진행하던 주문이 취소되었습니다.");
+        isOptionSelected = true;
+      }
+    } while (!isOptionSelected);
+
     return new MainMenuScreen(this);
   }
 

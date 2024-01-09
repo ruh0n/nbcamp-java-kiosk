@@ -15,13 +15,16 @@ public class OrderConfirmScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
-    int input = getInput();
+    AbstractScreen destination = null;
 
+    int input = getInput();
     if (input == 1 && !productsToOrder.isEmpty()) {
-      return new OrderCompleteScreen(this);
-    } else {
-      return new MainMenuScreen(this);
+      destination = new OrderCompleteScreen(this);
+    } else if (input == 2) {
+      destination = new MainMenuScreen(this);
     }
+
+    return destination;
   }
 
   @Override

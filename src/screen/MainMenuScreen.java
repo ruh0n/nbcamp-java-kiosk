@@ -26,27 +26,25 @@ public class MainMenuScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
+    AbstractScreen destination = null;
+
     int input = getInput();
 
     int maxCategory = menus.size();
 
     if (input == 0) {
-      return new HiddenScreen(this);
-    }
-    if (1 <= input && input <= maxCategory) {
-      return new ProductMenuScreen(this, super.menus.get(input - 1).getCategory());
-    }
-    if (input == maxCategory + 1) {
-      return new OrderConfirmScreen(this);
-    }
-    if (input == maxCategory + 2) {
-      return new OrderCancelScreen(this);
-    }
-    if (input == maxCategory + 3) {
-      return new ExitScreen(this);
+      destination = new HiddenScreen(this);
+    } else if (1 <= input && input <= maxCategory) {
+      destination = new ProductMenuScreen(this, super.menus.get(input - 1).getCategory());
+    } else if (input == maxCategory + 1) {
+      destination = new OrderConfirmScreen(this);
+    } else if (input == maxCategory + 2) {
+      destination = new OrderCancelScreen(this);
+    } else if (input == maxCategory + 3) {
+      destination = new ExitScreen(this);
     }
 
-    return null;
+    return destination;
   }
 
   @Override

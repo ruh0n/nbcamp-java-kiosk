@@ -19,11 +19,16 @@ public class OptionSelectionScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
-    int input = getInput();
+    boolean isOptionSelected = false;
 
-    if (1 <= input && input <= optionToPrint.getChoices().size()) {
-      optionToPrint.setSelectedChoice(input - 1);
-    }
+    do {
+      int input = getInput();
+
+      if (1 <= input && input <= optionToPrint.getChoices().size()) {
+        optionToPrint.setSelectedChoice(input - 1);
+        isOptionSelected = true;
+      }
+    } while (!isOptionSelected);
 
     return isLastOption ? new ProductAddConfirmScreen(this, product) : new OptionSelectionScreen(this, this.product);
 

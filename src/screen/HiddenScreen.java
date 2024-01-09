@@ -10,13 +10,15 @@ public class HiddenScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
+    AbstractScreen destination = null;
+
     int input = getInput();
 
     if (input == 0) {
-      return new MainMenuScreen(this);
+      destination = new MainMenuScreen(this);
     }
 
-    return null;
+    return destination;
   }
 
   @Override

@@ -17,6 +17,7 @@ public class OrderCompleteScreen extends AbstractScreen {
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
+
     return new MainMenuScreen(this);
   }
 

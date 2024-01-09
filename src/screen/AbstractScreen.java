@@ -3,6 +3,7 @@ package screen;
 import common.Category;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 import object.Menu;
 import object.Product;
@@ -37,9 +38,18 @@ public abstract class AbstractScreen {
 
 
   public AbstractScreen execute() {
+    AbstractScreen destination;
     this.printScreen();
 
-    return this.navigateByInput();
+    do {
+      destination = this.navigateByInput();
+
+      if (destination == null) {
+        System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+      }
+    } while (destination == null);
+
+    return destination;
   }
 
   protected abstract AbstractScreen navigateByInput();
@@ -118,11 +128,19 @@ public abstract class AbstractScreen {
 
 
   protected int getInput() {
+    boolean isCorrectInput = false;
     String input;
     do {
       System.out.print("\n> ");
       input = sc.nextLine().strip();
-    } while (input.isEmpty());
+
+      if (Pattern.matches("[0-9]+", input)) {
+        isCorrectInput = true;
+
+      } else {
+        System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+      }
+    } while (!isCorrectInput);
     return Integer.parseInt(input);
   }
 }

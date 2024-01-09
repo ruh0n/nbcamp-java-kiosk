@@ -13,31 +13,30 @@ public class ProductMenuScreen extends AbstractScreen {
 
   public ProductMenuScreen(AbstractScreen screen, Category category) {
     super(screen);
-    this.filteredProducts = this.products.stream()
-                                         .filter(product -> product.getCategory() == category)
-                                         .toList();
+    this.filteredProducts = this.products.stream().filter(product -> product.getCategory() == category).toList();
     this.category = category;
   }
 
 
   @Override
   protected AbstractScreen navigateByInput() {
-    int input = this.getInput();
+    AbstractScreen destination = null;
     int maxProduct = this.filteredProducts.size();
 
+    int input = this.getInput();
     if (input == 0) {
-      return new MainMenuScreen(this);
+      destination = new MainMenuScreen(this);
     } else if (1 <= input && input <= maxProduct) {
       Product selectedProduct = new Product(this.filteredProducts.get(input - 1));
 
       if (selectedProduct.hasOption()) {
-        return new OptionSelectionScreen(this, new Product(selectedProduct));
+        destination = new OptionSelectionScreen(this, new Product(selectedProduct));
       } else {
-        return new ProductAddConfirmScreen(this, selectedProduct);
+        destination = new ProductAddConfirmScreen(this, selectedProduct);
       }
     }
 
-    return null;
+    return destination;
   }
 
   @Override

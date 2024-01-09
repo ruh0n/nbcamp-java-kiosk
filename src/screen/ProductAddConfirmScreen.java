@@ -16,22 +16,22 @@ public class ProductAddConfirmScreen extends AbstractScreen {
 
   @Override
   protected AbstractScreen navigateByInput() {
+    AbstractScreen destination = null;
+
     int input = getInput();
-
-    AbstractScreen result = null;
-
     if (input == 1) {
       addProductToOrder();
-      result = new MainMenuScreen(this, product);
-    } else {
-      result = new MainMenuScreen(this);
+      destination = new MainMenuScreen(this, product);
+    } else if (input == 2) {
+      destination = new MainMenuScreen(this);
     }
 
+    // To Fix NullPointerException
     if (product.hasOption()) {
       product.getOptionList().forEach(option -> option.setSelectedChoice(null));
     }
 
-    return result;
+    return destination;
   }
 
   @Override
