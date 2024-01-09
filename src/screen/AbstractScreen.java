@@ -68,10 +68,6 @@ public abstract class AbstractScreen {
 
   }
 
-  protected void printProducts(List<Product> products) {
-    printProducts(products, null);
-  }
-
   protected void printProducts(List<Product> products, Category category) {
     if (category != null) {
       System.out.printf("%n[ %s MENU ]%n", category.getName());
